@@ -1,10 +1,10 @@
 $cell-size: 100px;
-$gap: 1px;
 $border-width: 1px;
-$font-size: 30px;
+$gap: 1px;
 $calendar-padding: 10px;
 $hover-color: #ffbfcb;
 $day-bg: #eee;
+$font-size: 30px;
 
 .calendar {
   display: flex;
@@ -19,6 +19,8 @@ $day-bg: #eee;
   transform: translate(-50%, -50%);
   box-sizing: border-box;
 
+  counter-reset: day 0;
+
   &__day {
     width: $cell-size;
     height: $cell-size;
@@ -30,9 +32,10 @@ $day-bg: #eee;
       background-color 0.5s,
       transform 0.5s;
 
+    counter-increment: day;
+
     &::before {
       content: counter(day);
-      counter-increment: day;
       font-family: Arial, sans-serif;
       font-size: $font-size;
       position: absolute;
@@ -47,8 +50,6 @@ $day-bg: #eee;
       transform: translateY(-20px);
     }
   }
-
-  counter-reset: day;
 
   @for $i from 28 through 30 {
     &--month-length-#{$i} {
